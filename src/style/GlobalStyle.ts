@@ -9,11 +9,13 @@ export default createGlobalStyle`
     font-family: 'Roboto', sans-serif;
   }
 
-  body, html {
-    height: 100vh;
-  }
-
   h1,h2,h3,h4,h5,h6 {
     font-weight: 400;
+  }
+
+  button {
+    border: none;
+    background: none;
+    cursor: pointer;
   }
 `;
