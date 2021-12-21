@@ -10,6 +10,27 @@ export const Container = styled.div`
     background: ${prop => prop.theme.backgroundCalc};
     border-radius: 20px;
     box-shadow: 1px 2px 15px 0px rgba(0,0,0,0.25);
+    position: relative;
+
+    .notch {
+      position: absolute;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      
+      div {
+        box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2);
+        padding: 8px 18px;
+        border-radius: 0 0 12px 12px; 
+        background: ${prop => prop.theme.backgroundKeyboard};
+        display: flex;
+        justify-content: center;
+        gap: 18px;
+
+        button > svg > path {fill: ${prop => prop.theme.textColorButtons};}
+        button.active > svg > path{fill: ${prop => prop.theme.blue};}
+      }
+    }
   }
   .output {
     color: ${prop => prop.theme.textColorOutput};
