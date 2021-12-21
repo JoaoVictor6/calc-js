@@ -9,6 +9,7 @@ export const Container = styled.div`
   main {
     background: ${prop => prop.theme.backgroundCalc};
     border-radius: 20px;
+    box-shadow: 1px 2px 15px 0px rgba(0,0,0,0.25);
   }
   .output {
     color: ${prop => prop.theme.textColorOutput};
