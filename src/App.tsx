@@ -1,21 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { Container } from './style/App.style';
-import Theme from './style/theme';
+import ThemeConfig from './style/theme';
 
 function App() {
+  const [currentTheme, setCurrentTheme] = useState<'dark' | 'light'>('dark');
   return (
-    <ThemeProvider theme={Theme.dark}>
+    <ThemeProvider theme={ThemeConfig[currentTheme]}>
       <Container>
         <main>
           <section className="notch">
             <div>
-              <button>
+              <button 
+                onClick={() => {setCurrentTheme('light');}}
+                className={currentTheme === 'dark' ? '' : 'active'}
+              >
                 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 28 28">
                   <path fill="#E4E9EE" fillRule="evenodd" d="M14 2.8a1.4 1.4 0 011.4 1.4v1.4a1.4 1.4 0 11-2.8 0V4.2A1.4 1.4 0 0114 2.8zM19.6 14a5.6 5.6 0 11-11.2 0 5.6 5.6 0 0111.2 0zm-.65 6.93l.99.99a1.4 1.4 0 001.98-1.98l-.99-.99a1.4 1.4 0 00-1.98 1.98zm2.968-14.85a1.4 1.4 0 010 1.98l-.988.99a1.4 1.4 0 11-1.98-1.98l.99-.99a1.4 1.4 0 011.98 0h-.002zM23.8 15.4a1.4 1.4 0 100-2.8h-1.4a1.4 1.4 0 000 2.8h1.4zM14 21a1.4 1.4 0 011.4 1.4v1.4a1.4 1.4 0 11-2.8 0v-1.4A1.4 1.4 0 0114 21zM7.07 9.05a1.4 1.4 0 001.981-1.98l-.991-.99a1.4 1.4 0 00-1.98 1.98l.99.99zm1.98 11.88l-.99.99a1.4 1.4 0 01-1.98-1.98l.99-.99a1.4 1.4 0 011.98 1.98zM5.6 15.4a1.4 1.4 0 100-2.8H4.2a1.4 1.4 0 000 2.8h1.4z" clipRule="evenodd"/>
                 </svg>
               </button>
-              <button className='active'>
+              <button 
+                onClick={() => {setCurrentTheme('dark');}}
+                className={currentTheme === 'dark' ? 'active' : ''}
+              >
                 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 28 28">
                   <path fill="#18ACEB" d="M24.21 18.61A11.2 11.2 0 019.39 3.79a11.201 11.201 0 1014.82 14.82z"/>
                 </svg>

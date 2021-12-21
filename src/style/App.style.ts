@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   min-height: 100vh;
-
+  transition: .1s all; 
   background: ${prop => prop.theme.background};
   display: grid;
   place-content: center;
