@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { Container, OutputDiv } from './style/App.style';
 import ThemeConfig, { ThemeOptions } from './style/theme';
@@ -14,36 +14,45 @@ export default function App() {
     content: '0', 
     isResult: false
   });
+  const clickCalcHandler = () => {
+    const value = currentNumber.content.split('');
+    if(value[value.length-1].match(/[+,-,×,÷]/gm) || currentNumber.content === '0')return;
+    if(!currentNumber.content.match(/[+,-,×,÷]/gm) && !value[value.length-1].match(/[0-9]/gm))return;
 
+    console.log('EU TENHO O BRIO');
+  };
   const clickHandler = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     const className = e.currentTarget.className;
-    const number = e.currentTarget.textContent;
+    const number = e.currentTarget.textContent as string;
 
-    if(!isNaN(Number(currentNumber.content[currentNumber.content.length-1]))){
-      switch (className) {
-      case 'multiplication':
-        setCurrentNumber(old => {
-          return {...old, content: old.content+'x'};
-        });
-        break;
-      case 'subtraction':
-        setCurrentNumber(old => {
-          return {...old, content: old.content+'-'};
-        });
-        break;
-      case 'sum':
-        setCurrentNumber(old => {
-          return {...old, content: old.content+'+'};
-        });
-        break;
-      case 'division':
-        setCurrentNumber(old => {
-          return {...old, content: old.content+'%'};
-        });
-        break;
-      default:
-        break;
+    if(!currentNumber.content[currentNumber.content.length-1].match(/[+,-,×,÷]/gm)){
+      if(!currentNumber.content.match(/[+,-,×,÷]/gm)){
+        switch (className) {
+        case 'multiplication':
+          setCurrentNumber(old => {
+            return {...old, content: old.content+'×'};
+          });
+          break;
+        case 'subtraction':
+          setCurrentNumber(old => {
+            return {...old, content: old.content+'-'};
+          });
+          break;
+        case 'sum':
+          setCurrentNumber(old => {
+            return {...old, content: old.content+'+'};
+          });
+          break;
+        case 'division':
+          setCurrentNumber(old => {
+            return {...old, content: old.content+'÷'};
+          });
+          break;
+        default:
+          break;
+        }
       }
+      
     }
     if (currentNumber.content === '0' || currentNumber.isResult){
       setCurrentNumber({content: number+'', isResult: false});
@@ -52,6 +61,27 @@ export default function App() {
     setCurrentNumber(old => {
       return {...old, content: old.content+(number+'')};
     });
+  };
+  const RenderOutput = () => {
+    // the spread operator is a down level iteration, however, exists other methods for parsing strings for an array
+    const title = Array.from(currentNumber.content);
+    return (
+      <h1 className={
+        currentNumber.content.split('').length >= 10 
+          ? 'small' 
+          : currentNumber.content.split('').length >= 13 
+            ? 'xsmall'
+            : ''}>
+        {
+          title.map((char,index) => {
+            if(isNaN(Number(char)) && char !== '.'){
+              return <span key={`symbol_${index}`}> {char} </span>;
+            }
+            return char;
+          })
+        }
+      </h1>
+    );
   };
 
   return (
@@ -79,8 +109,8 @@ export default function App() {
             </div>
           </section>
           <OutputDiv>
-            <h2>100 <span>-</span> 7</h2>
-            <h1>{currentNumber.content}</h1>
+            {/* <h2>100 <span>-</span> 7</h2> */}
+            {RenderOutput()}
           </OutputDiv>
           <section className="buttons">
             <button onClick={clickHandler}
@@ -162,7 +192,7 @@ export default function App() {
               0
             </button>
             <button
-              onClick={clickHandler}
+              onClick={clickCalcHandler}
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="42" height="22" fill="none" viewBox="0 0 42 22">
                 <rect width="42" height="8" fill="#39E68A" rx="4"/>
