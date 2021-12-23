@@ -32,30 +32,6 @@ export const Container = styled.div`
       }
     }
   }
-  .output {
-    height: 272px;
-    color: ${prop => prop.theme.textColorOutput};
-    font-size: 52px;
-    margin-bottom: 16px;
-    padding: 0 24px;
-    
-    display: flex;
-    flex-direction: column;
-    justify-content: end;
-    * {
-      width: 100%;
-      text-align: right;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    h2 {
-      font-size: 46px;
-      margin-bottom: 12px;
-    }
-    h2 > span {
-      color: ${prop => prop.theme.red};
-    }
-  }
 
   .buttons {
     padding: 28px 22px;
@@ -79,5 +55,41 @@ export const Container = styled.div`
       box-shadow: 0px 1px 15px 5px rgba(0,0,0,0.2);
       box-shadow: 0px 1px 10px 1px rgba(229,229,229,0.01);
     }
+  }
+`;
+export const OutputDiv = styled.section`
+  height: 272px;
+  color: ${prop => prop.theme.textColorOutput};
+  margin-bottom: 16px;
+  padding: 0 24px;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  * {
+    width: 100%;
+    text-align: right;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  h1 {
+    font-size: 52px;
+
+    &.small {
+      font-size: 40px;
+    }
+
+    &.xsmall {
+      font-size: 32px;
+    }
+  }
+
+  h2 {
+    font-size: 46px;
+    margin-bottom: 12px;
+  }
+  h2 > span, h1 > span {
+    color: ${prop => prop.theme.red};
   }
 `;
