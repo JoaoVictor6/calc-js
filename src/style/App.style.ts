@@ -17,7 +17,6 @@ export const Container = styled.div`
       width: 100%;
       display: flex;
       justify-content: center;
-      
       div {
         box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2);
         padding: 8px 18px;
@@ -33,17 +32,22 @@ export const Container = styled.div`
     }
   }
   .output {
+    height: 272px;
     color: ${prop => prop.theme.textColorOutput};
     font-size: 52px;
     margin-bottom: 16px;
     padding: 0 24px;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
     * {
+      width: 100%;
       text-align: right;
     }
     h2 {
       font-size: 46px;
       margin-bottom: 12px;
-      margin-top: 100px;
     }
     h2 > span {
       color: ${prop => prop.theme.red};
