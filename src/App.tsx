@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ThemeProvider } from 'styled-components';
-import { Container } from './style/App.style';
+import { Container, OutputDiv } from './style/App.style';
 import ThemeConfig, { ThemeOptions } from './style/theme';
 
 type CurrentNumberInterface = {
@@ -10,7 +10,10 @@ type CurrentNumberInterface = {
 
 export default function App() {
   const [currentTheme, setCurrentTheme] = useState<ThemeOptions>('dark');
-  const [currentNumber, setCurrentNumber] = useState<CurrentNumberInterface>({content: '0', isResult: false});
+  const [currentNumber, setCurrentNumber] = useState<CurrentNumberInterface>({
+    content: '0', 
+    isResult: false
+  });
 
   const clickHandler = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     const className = e.currentTarget.className;
@@ -20,22 +23,22 @@ export default function App() {
       switch (className) {
       case 'multiplication':
         setCurrentNumber(old => {
-          return {...old, content: old+'x'};
+          return {...old, content: old.content+'x'};
         });
         break;
       case 'subtraction':
         setCurrentNumber(old => {
-          return {...old, content: old+'-'};
+          return {...old, content: old.content+'-'};
         });
         break;
       case 'sum':
         setCurrentNumber(old => {
-          return {...old, content: old+'+'};
+          return {...old, content: old.content+'+'};
         });
         break;
       case 'division':
         setCurrentNumber(old => {
-          return {...old, content: old+'%'};
+          return {...old, content: old.content+'%'};
         });
         break;
       default:
@@ -47,7 +50,7 @@ export default function App() {
       return;
     }
     setCurrentNumber(old => {
-      return {...old, content: old+(number+'')};
+      return {...old, content: old.content+(number+'')};
     });
   };
 
@@ -75,10 +78,10 @@ export default function App() {
               </button>
             </div>
           </section>
-          <section className="output">
+          <OutputDiv>
             <h2>100 <span>-</span> 7</h2>
-            <h1>{currentNumber}</h1>
-          </section>
+            <h1>{currentNumber.content}</h1>
+          </OutputDiv>
           <section className="buttons">
             <button onClick={clickHandler}
             >
