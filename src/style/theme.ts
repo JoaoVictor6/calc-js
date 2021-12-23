@@ -1,3 +1,4 @@
+export type ThemeOptions = 'dark' | 'light'
 export default {
   dark: {
     red: '#F23057',
