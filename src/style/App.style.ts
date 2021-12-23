@@ -7,6 +7,7 @@ export const Container = styled.div`
   display: grid;
   place-content: center;
   main {
+    width: 457px;
     background: ${prop => prop.theme.backgroundCalc};
     border-radius: 20px;
     box-shadow: 1px 2px 15px 0px rgba(0,0,0,0.25);
@@ -44,6 +45,8 @@ export const Container = styled.div`
     * {
       width: 100%;
       text-align: right;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     h2 {
       font-size: 46px;
