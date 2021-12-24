@@ -129,7 +129,15 @@ export default function App() {
       </h1>
     );
   };
-
+  const backspaceHandler = () => {
+    setCurrentNumber(old => {
+      return {
+        ...old,
+        content: old.content.slice(0,-1).length <= 1 ? '0'
+          : old.content.slice(0,-1)
+      };
+    });
+  };
   return (
     <ThemeProvider theme={ThemeConfig[currentTheme]}>
       <Container>
@@ -164,7 +172,10 @@ export default function App() {
               >
               AC
               </button>
-              <button className='backspace'>
+              <button 
+                onClick={() => backspaceHandler()}
+                className='backspace'
+              >
                 <svg xmlns="http://www.w3.org/2000/svg" width="43" height="32" fill="none" viewBox="0 0 43 32">
                   <path fill="#F23057" fillRule="evenodd" d="M12.551 2.344A8 8 0 0118.207 0h16.46a8 8 0 018 8v16a8 8 0 01-8 8h-16.46a8 8 0 01-5.653-2.344L.781 17.886a2.666 2.666 0 010-3.771L12.55 2.344zm10.667 6.437a2.666 2.666 0 00-3.77 3.771L22.894 16l-3.448 3.448a2.667 2.667 0 103.771 3.77l3.448-3.447 3.448 3.448a2.667 2.667 0 003.77-3.771L30.438 16l3.448-3.448a2.667 2.667 0 00-3.77-3.77l-3.449 3.447-3.448-3.448z" clipRule="evenodd"/>
                 </svg>
