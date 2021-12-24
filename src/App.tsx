@@ -131,6 +131,13 @@ export default function App() {
   };
   const backspaceHandler = () => {
     setCurrentNumber(old => {
+      if(old.isResult){
+        return {
+          ...old,
+          content: '0'
+        };
+      }
+
       return {
         ...old,
         content: old.content.slice(0,-1).length <= 1 ? '0'
