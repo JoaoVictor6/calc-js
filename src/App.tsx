@@ -10,23 +10,56 @@ type CurrentNumberInterface = {
 
 export default function App() {
   const [currentTheme, setCurrentTheme] = useState<ThemeOptions>('dark');
+  const [calcHistory, setCalcHistory] = useState('');
   const [currentNumber, setCurrentNumber] = useState<CurrentNumberInterface>({
     content: '0', 
     isResult: false
   });
   const clickCalcHandler = () => {
     const value = currentNumber.content.split('');
-    if(value[value.length-1].match(/[+,-,×,÷]/gm) || currentNumber.content === '0')return;
-    if(!currentNumber.content.match(/[+,-,×,÷]/gm) && !value[value.length-1].match(/[0-9]/gm))return;
+    const symbol = currentNumber.content.match(/[+,\-,×,÷]/gm);
 
-    console.log('EU TENHO O BRIO');
+    if(value[value.length-1].match(/[+,\-,×,÷]/gm) || currentNumber.content === '0')return;
+    if(!symbol && !value[value.length-1].match(/[0-9]/gm))return;
+    const values = currentNumber.content.split(/[+,\-,×,÷]/gm);
+    setCalcHistory(currentNumber.content);
+    console.log(symbol);
+    switch (symbol?.toString()) {
+    case '×':
+      setCurrentNumber({
+        isResult: true, 
+        content: (Number(values[0])*Number(values[1]))+''
+      });
+      break;
+    case '-':
+      setCurrentNumber({
+        isResult: true, 
+        content: (Number(values[0]) - Number(values[1]))+''
+      });
+      break;
+    case '+':
+      setCurrentNumber({
+        isResult: true, 
+        content: (Number(values[0]) + Number(values[1]))+''
+      });
+      break;
+    case '÷':
+      setCurrentNumber({
+        isResult: true, 
+        content: (Number(values[0]) / Number(values[1]))+''
+      });
+      break;
+    default:
+      break;
+    }
+
   };
   const clickHandler = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     const className = e.currentTarget.className;
     const number = e.currentTarget.textContent as string;
 
-    if(!currentNumber.content[currentNumber.content.length-1].match(/[+,-,×,÷]/gm)){
-      if(!currentNumber.content.match(/[+,-,×,÷]/gm)){
+    if(!currentNumber.content[currentNumber.content.length-1].match(/[+,\-,×,÷]/gm)){
+      if(!currentNumber.content.match(/[+,\-,×,÷]/gm)){
         switch (className) {
         case 'multiplication':
           setCurrentNumber(old => {
@@ -62,14 +95,27 @@ export default function App() {
       return {...old, content: old.content+(number+'')};
     });
   };
-  const RenderOutput = () => {
+  const RenderOutput = (content: string, subtitle = false) => {
     // the spread operator is a down level iteration, however, exists other methods for parsing strings for an array
-    const title = Array.from(currentNumber.content);
+    const title = Array.from(content);
+    if(subtitle){
+      return(
+        <h2>
+          {title.map((char,index) => {
+            if(isNaN(Number(char)) && char !== '.'){
+              return <span key={`symbol_${index}`}> {char} </span>;
+            }
+            return char;
+          })}
+        </h2>
+      );
+    }
+    
     return (
       <h1 className={
-        currentNumber.content.split('').length >= 10 
+        content.split('').length >= 10 
           ? 'small' 
-          : currentNumber.content.split('').length >= 13 
+          : content.split('').length >= 13 
             ? 'xsmall'
             : ''}>
         {
@@ -109,8 +155,8 @@ export default function App() {
             </div>
           </section>
           <OutputDiv>
-            {/* <h2>100 <span>-</span> 7</h2> */}
-            {RenderOutput()}
+            {RenderOutput(calcHistory, true)}
+            {RenderOutput(currentNumber.content)}
           </OutputDiv>
           <section className="buttons">
             <button onClick={clickHandler}
