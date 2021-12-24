@@ -37,12 +37,21 @@ export const Container = styled.div`
     padding: 28px 22px;
     background: ${prop => prop.theme.backgroundKeyboard};
     border-radius: 32px 32px 20px 20px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap: 18px;
 
+    .normal-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 18px;
+    }
+
+    .dif-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      margin-bottom: 18px; 
+      gap: 18px;
+    }
     button {
-      width: 80px;
+      width: 100%;
       height: 80px;
       line-height: 48px;
       font-size: 48px;
@@ -54,6 +63,20 @@ export const Container = styled.div`
       background: ${prop => prop.theme.backgroundButton};
       box-shadow: 0px 1px 15px 5px rgba(0,0,0,0.2);
       box-shadow: 0px 1px 10px 1px rgba(229,229,229,0.01);
+      margin: 0 auto;
+
+      &.porcent {
+        color: ${prop => prop.theme.red};
+        font-weight: 500;
+      }
+
+      &.two-col {
+        width: 100%;
+      }
+
+      &.backspace > svg > path {
+        fill: ${({theme}) => theme.textColorOutput};
+      }
     }
   }
 `;

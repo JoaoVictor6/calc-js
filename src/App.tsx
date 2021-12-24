@@ -159,102 +159,118 @@ export default function App() {
             {RenderOutput(currentNumber.content)}
           </OutputDiv>
           <section className="buttons">
-            <button onClick={clickHandler}
-            >
+            <section className='dif-grid'>
+              <button className='two-col'
+              >
+              AC
+              </button>
+              <button className='backspace'>
+                <svg xmlns="http://www.w3.org/2000/svg" width="43" height="32" fill="none" viewBox="0 0 43 32">
+                  <path fill="#F23057" fillRule="evenodd" d="M12.551 2.344A8 8 0 0118.207 0h16.46a8 8 0 018 8v16a8 8 0 01-8 8h-16.46a8 8 0 01-5.653-2.344L.781 17.886a2.666 2.666 0 010-3.771L12.55 2.344zm10.667 6.437a2.666 2.666 0 00-3.77 3.771L22.894 16l-3.448 3.448a2.667 2.667 0 103.771 3.77l3.448-3.447 3.448 3.448a2.667 2.667 0 003.77-3.771L30.438 16l3.448-3.448a2.667 2.667 0 00-3.77-3.77l-3.449 3.447-3.448-3.448z" clipRule="evenodd"/>
+                </svg>
+              </button>
+              <button className="porcent">
+              %
+              </button>
+            </section>
+            <section className="normal-grid">
+              <button onClick={clickHandler}
+              >
               1
-            </button>
-            <button
-              onClick={clickHandler}
-            >
+              </button>
+              <button
+                onClick={clickHandler}
+              >
               2
-            </button>
-            <button
-              onClick={clickHandler}
-            >
+              </button>
+              <button
+                onClick={clickHandler}
+              >
               3
-            </button>
-            <button
-              onClick={clickHandler}
-              className='multiplication'
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="none" viewBox="0 0 48 48">
-                <path fill="#F23057" fillRule="evenodd" d="M10.303 10.303a2.4 2.4 0 013.394 0L24 20.606l10.303-10.303a2.4 2.4 0 113.394 3.394L27.394 24l10.303 10.303a2.4 2.4 0 01-3.394 3.394L24 27.394 13.697 37.697a2.4 2.4 0 01-3.394-3.394L20.606 24 10.303 13.697a2.4 2.4 0 010-3.394z" clipRule="evenodd"/>
-              </svg>
-            </button>
-            <button
-              onClick={clickHandler}
-            >
+              </button>
+              <button
+                onClick={clickHandler}
+                className='multiplication'
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="none" viewBox="0 0 48 48">
+                  <path fill="#F23057" fillRule="evenodd" d="M10.303 10.303a2.4 2.4 0 013.394 0L24 20.606l10.303-10.303a2.4 2.4 0 113.394 3.394L27.394 24l10.303 10.303a2.4 2.4 0 01-3.394 3.394L24 27.394 13.697 37.697a2.4 2.4 0 01-3.394-3.394L20.606 24 10.303 13.697a2.4 2.4 0 010-3.394z" clipRule="evenodd"/>
+                </svg>
+              </button>
+              <button
+                onClick={clickHandler}
+              >
               4
-            </button>
-            <button
-              onClick={clickHandler}
-            >
+              </button>
+              <button
+                onClick={clickHandler}
+              >
               5
-            </button>
-            <button
-              onClick={clickHandler}
-            >
+              </button>
+              <button
+                onClick={clickHandler}
+              >
               6
-            </button>
-            <button 
-              className='subtraction'
-              onClick={clickHandler}
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="7" fill="none" viewBox="0 0 48 7">
-                <rect width="48" height="7" fill="#F23057" rx="3.5"/>
-              </svg>
-            </button>
-            <button
-              onClick={clickHandler}
-            >
+              </button>
+              <button 
+                className='subtraction'
+                onClick={clickHandler}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="7" fill="none" viewBox="0 0 48 7">
+                  <rect width="48" height="7" fill="#F23057" rx="3.5"/>
+                </svg>
+              </button>
+              <button
+                onClick={clickHandler}
+              >
               7
-            </button>
-            <button
-              onClick={clickHandler}
-            >
+              </button>
+              <button
+                onClick={clickHandler}
+              >
               8
-            </button>
-            <button
-              onClick={clickHandler}
-            >
+              </button>
+              <button
+                onClick={clickHandler}
+              >
               9
-            </button>
-            <button
-              onClick={clickHandler}
-              className='sum'
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="none" viewBox="0 0 40 40">
-                <path fill="#F23057" fillRule="evenodd" d="M.63 20a2.4 2.4 0 012.4-2.4H17.6V3.03a2.399 2.399 0 114.8 0V17.6h14.57a2.4 2.4 0 010 4.8H22.4v14.57a2.4 2.4 0 01-4.8 0V22.4H3.03A2.4 2.4 0 01.63 20z" clipRule="evenodd"/>
-              </svg>
-            </button>
-            <button
-              onClick={clickHandler}
-            >
+              </button>
+              <button
+                onClick={clickHandler}
+                className='sum'
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="none" viewBox="0 0 40 40">
+                  <path fill="#F23057" fillRule="evenodd" d="M.63 20a2.4 2.4 0 012.4-2.4H17.6V3.03a2.399 2.399 0 114.8 0V17.6h14.57a2.4 2.4 0 010 4.8H22.4v14.57a2.4 2.4 0 01-4.8 0V22.4H3.03A2.4 2.4 0 01.63 20z" clipRule="evenodd"/>
+                </svg>
+              </button>
+              <button
+                onClick={clickHandler}
+              >
               .
-            </button>
-            <button
-              onClick={clickHandler}
-            >
+              </button>
+              <button
+                onClick={clickHandler}
+              >
               0
-            </button>
-            <button
-              onClick={clickCalcHandler}
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="42" height="22" fill="none" viewBox="0 0 42 22">
-                <rect width="42" height="8" fill="#39E68A" rx="4"/>
-                <rect width="42" height="8" y="14" fill="#39E68A" rx="4"/>
-              </svg>
-            </button>
-            <button
-              onClick={clickHandler}
-              className='division'
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="42" height="46" fill="none" viewBox="0 0 42 46">
-                <rect width="42" height="6" y="20" fill="#F23057" rx="3"/>
-                <circle cx="20" cy="7" r="5" stroke="#F23057" strokeWidth="4"/>
-                <circle cx="20" cy="39" r="5" stroke="#F23057" strokeWidth="4"/>
-              </svg>
-            </button>
+              </button>
+              <button
+                onClick={clickCalcHandler}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="42" height="22" fill="none" viewBox="0 0 42 22">
+                  <rect width="42" height="8" fill="#39E68A" rx="4"/>
+                  <rect width="42" height="8" y="14" fill="#39E68A" rx="4"/>
+                </svg>
+              </button>
+              <button
+                onClick={clickHandler}
+                className='division'
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="42" height="46" fill="none" viewBox="0 0 42 46">
+                  <rect width="42" height="6" y="20" fill="#F23057" rx="3"/>
+                  <circle cx="20" cy="7" r="5" stroke="#F23057" strokeWidth="4"/>
+                  <circle cx="20" cy="39" r="5" stroke="#F23057" strokeWidth="4"/>
+                </svg>
+              </button>
+            </section>
           </section>
         </main>
       </Container>
