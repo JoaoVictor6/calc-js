@@ -17,14 +17,21 @@ export default function App() {
   });
   const clickCalcHandler = () => {
     const value = currentNumber.content.split('');
-    const symbol = currentNumber.content.match(/[+,\-,×,÷]/gm);
+    const symbol = currentNumber.content.match(/[+,\-,×,÷,%]/gm);
 
-    if(value[value.length-1].match(/[+,\-,×,÷]/gm) || currentNumber.content === '0')return;
+    if(value[value.length-1].match(/[+,\-,×,÷,%]/gm) || currentNumber.content === '0')return;
     if(!symbol && !value[value.length-1].match(/[0-9]/gm))return;
-    const values = currentNumber.content.split(/[+,\-,×,÷]/gm);
+    
+    const values = currentNumber.content.split(/[+,\-,×,÷,%]/gm);
     setCalcHistory(currentNumber.content);
-    console.log(symbol);
+    console.log(values, symbol, currentNumber.content);
     switch (symbol?.toString()) {
+    case '%':
+      setCurrentNumber({
+        isResult: true, 
+        content: (Number(values[0])*Number(values[1])/100)+''
+      });
+      break;
     case '×':
       setCurrentNumber({
         isResult: true, 
@@ -58,35 +65,40 @@ export default function App() {
     const className = e.currentTarget.className;
     const number = e.currentTarget.textContent as string;
 
-    if(!currentNumber.content[currentNumber.content.length-1].match(/[+,\-,×,÷]/gm)){
-      if(!currentNumber.content.match(/[+,\-,×,÷]/gm)){
-        switch (className) {
-        case 'multiplication':
-          setCurrentNumber(old => {
-            return {...old, content: old.content+'×'};
-          });
-          break;
-        case 'subtraction':
-          setCurrentNumber(old => {
-            return {...old, content: old.content+'-'};
-          });
-          break;
-        case 'sum':
-          setCurrentNumber(old => {
-            return {...old, content: old.content+'+'};
-          });
-          break;
-        case 'division':
-          setCurrentNumber(old => {
-            return {...old, content: old.content+'÷'};
-          });
-          break;
-        default:
-          break;
-        }
+    if(!number.match(/[0-9,.]/gm)){
+      switch (className) {
+      case 'percent':
+        console.log('t');
+        setCurrentNumber(old => {
+          return {...old, content: old.content+'%'};
+        });
+        break;
+      case 'multiplication':
+        setCurrentNumber(old => {
+          return {...old, content: old.content+'×'};
+        });
+        break;
+      case 'subtraction':
+        setCurrentNumber(old => {
+          return {...old, content: old.content+'-'};
+        });
+        break;
+      case 'sum':
+        setCurrentNumber(old => {
+          return {...old, content: old.content+'+'};
+        });
+        break;
+      case 'division':
+        setCurrentNumber(old => {
+          return {...old, content: old.content+'÷'};
+        });
+        break;
+      default:
+        break;
       }
-      
+      return;
     }
+    if (currentNumber.content === '0' && number === '.')return;
     if (currentNumber.content === '0' || currentNumber.isResult){
       setCurrentNumber({content: number+'', isResult: false});
       return;
@@ -102,7 +114,7 @@ export default function App() {
       return(
         <h2>
           {title.map((char,index) => {
-            if(isNaN(Number(char)) && char !== '.'){
+            if(char.match(/[+,\-,×,÷,%]/gm)){
               return <span key={`symbol_${index}`}> {char} </span>;
             }
             return char;
@@ -120,7 +132,7 @@ export default function App() {
             : ''}>
         {
           title.map((char,index) => {
-            if(isNaN(Number(char)) && char !== '.'){
+            if(char.match(/[+,\-,×,÷,%]/gm)){
               return <span key={`symbol_${index}`}> {char} </span>;
             }
             return char;
@@ -195,7 +207,10 @@ export default function App() {
                   <path fill="#F23057" fillRule="evenodd" d="M12.551 2.344A8 8 0 0118.207 0h16.46a8 8 0 018 8v16a8 8 0 01-8 8h-16.46a8 8 0 01-5.653-2.344L.781 17.886a2.666 2.666 0 010-3.771L12.55 2.344zm10.667 6.437a2.666 2.666 0 00-3.77 3.771L22.894 16l-3.448 3.448a2.667 2.667 0 103.771 3.77l3.448-3.447 3.448 3.448a2.667 2.667 0 003.77-3.771L30.438 16l3.448-3.448a2.667 2.667 0 00-3.77-3.77l-3.449 3.447-3.448-3.448z" clipRule="evenodd"/>
                 </svg>
               </button>
-              <button className="percent">
+              <button 
+                className="percent"
+                onClick={clickHandler} 
+              >
               %
               </button>
             </section>
