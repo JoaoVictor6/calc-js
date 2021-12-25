@@ -65,7 +65,7 @@ export const Container = styled.div`
       box-shadow: 0px 1px 10px 1px rgba(229,229,229,0.01);
       margin: 0 auto;
 
-      &.porcent {
+      &.percent {
         color: ${prop => prop.theme.red};
         font-weight: 500;
       }
@@ -81,7 +81,7 @@ export const Container = styled.div`
   }
 `;
 export const OutputDiv = styled.section`
-  height: 272px;
+  height: 216px;
   color: ${prop => prop.theme.textColorOutput};
   margin-bottom: 16px;
   padding: 0 24px;
