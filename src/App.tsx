@@ -145,6 +145,13 @@ export default function App() {
       };
     });
   };
+  const clearAll = () => {
+    setCurrentNumber({
+      content: '0',
+      isResult: false
+    });
+    setCalcHistory('');
+  };
   return (
     <ThemeProvider theme={ThemeConfig[currentTheme]}>
       <Container>
@@ -176,6 +183,7 @@ export default function App() {
           <section className="buttons">
             <section className='dif-grid'>
               <button className='two-col'
+                onClick={() => clearAll()}
               >
               AC
               </button>
@@ -187,7 +195,7 @@ export default function App() {
                   <path fill="#F23057" fillRule="evenodd" d="M12.551 2.344A8 8 0 0118.207 0h16.46a8 8 0 018 8v16a8 8 0 01-8 8h-16.46a8 8 0 01-5.653-2.344L.781 17.886a2.666 2.666 0 010-3.771L12.55 2.344zm10.667 6.437a2.666 2.666 0 00-3.77 3.771L22.894 16l-3.448 3.448a2.667 2.667 0 103.771 3.77l3.448-3.447 3.448 3.448a2.667 2.667 0 003.77-3.771L30.438 16l3.448-3.448a2.667 2.667 0 00-3.77-3.77l-3.449 3.447-3.448-3.448z" clipRule="evenodd"/>
                 </svg>
               </button>
-              <button className="porcent">
+              <button className="percent">
               %
               </button>
             </section>
