@@ -64,7 +64,7 @@ export default function App() {
     const className = e.currentTarget.className;
     const number = e.currentTarget.textContent as string;
 
-    if(!number.match(/[0-9,.]/gm) && !currentNumber.content.match(/[+,\-,×,÷,%]/gm)){
+    if(!number.match(/[0-9,.]/gm) && !currentNumber.content.match(/[+,\-,×,÷,%]/gm)){ 
       switch (className) {
       case 'percent':
         setCurrentNumber(old => {
