@@ -63,8 +63,8 @@ export default function App() {
   const clickHandler = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     const className = e.currentTarget.className;
     const number = e.currentTarget.textContent as string;
-
-    if(!number.match(/[0-9,.]/gm) && !currentNumber.content.match(/[+,\-,×,÷,%]/gm)){ 
+    
+    if(!number.match(/[0-9,.]/gm) && !(currentNumber.content.match(/[+,\-,×,÷,%]/gm))){ 
       switch (className) {
       case 'percent':
         setCurrentNumber(old => {
@@ -96,17 +96,21 @@ export default function App() {
       }
       return;
     }
+    
     if (currentNumber.content === '0' && number === '.')return;
     if (currentNumber.content === '0' || currentNumber.isResult){
       setCurrentNumber({content: number+'', isResult: false});
       return;
     }
-    setCurrentNumber(old => {
-      return {...old, content: old.content+(number+'')};
-    });
+    if(!className){
+      setCurrentNumber(old => {
+        return {...old, content: old.content+(number+'')};
+      });
+    }
   };
   const RenderOutput = (content: string, subtitle = false) => {
-    // the spread operator is a down level iteration, however, exists other methods for parsing strings for an array
+    // the spread operator is a down level iteration, however, exists 
+    //  other methods for parsing strings for an array
     const title = Array.from(content);
     if(subtitle){
       return(
