@@ -24,7 +24,6 @@ export default function App() {
     
     const values = currentNumber.content.split(/[+,\-,×,÷,%]/gm);
     setCalcHistory(currentNumber.content);
-    console.log(values, symbol, currentNumber.content);
     switch (symbol?.toString()) {
     case '%':
       setCurrentNumber({
@@ -65,10 +64,9 @@ export default function App() {
     const className = e.currentTarget.className;
     const number = e.currentTarget.textContent as string;
 
-    if(!number.match(/[0-9,.]/gm)){
+    if(!number.match(/[0-9,.]/gm) && !currentNumber.content.match(/[+,\-,×,÷,%]/gm)){
       switch (className) {
       case 'percent':
-        console.log('t');
         setCurrentNumber(old => {
           return {...old, content: old.content+'%'};
         });
